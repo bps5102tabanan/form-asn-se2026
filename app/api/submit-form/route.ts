@@ -6,8 +6,8 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
 
     const timestampStr = new Date().getTime();
-    const fileNameRumah = `Rumah_${body.nik}_${timestampStr}.jpg`;
-    const fileNameTamu = `Tamu_${body.nik}_${timestampStr}.jpg`;
+    const fileNameRumah = `Rumah_${body.namaPegawai}_${timestampStr}.jpg`;
+    const fileNameTamu = `Tamu_${body.namaPegawai}_${timestampStr}.jpg`;
     const folderId = process.env.GOOGLE_DRIVE_FOLDER_ID!;
 
     let linkFotoRumah = '-';
