@@ -35,6 +35,7 @@ export const DAFTAR_OPD = [
   "Badan Riset dan Inovasi Daerah Kabupaten Tabanan",
   "Satuan Polisi Pamong Praja Kabupaten Tabanan",
   "Rumah Sakit Umum Daerah Kabupaten Tabanan",
+  "Rumah Sakit Umum Daerah Singasana",
   "Kecamatan Tabanan",
   "Kecamatan Kediri",
   "Kecamatan Kerambitan",
