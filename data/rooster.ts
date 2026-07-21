@@ -32,6 +32,7 @@ export const DAFTAR_OPD = [
   "Badan Pendapatan Daerah Kabupaten Tabanan",
   "Badan Kesatuan Bangsa dan Politik Kabupaten Tabanan",
   "Badan Penanggulangan Bencana Daerah Kabupaten Tabanan",
+  "Badan Riset dan Inovasi Daerah Kabupaten Tabanan",
   "Satuan Polisi Pamong Praja Kabupaten Tabanan",
   "Rumah Sakit Umum Daerah Kabupaten Tabanan",
   "Kecamatan Tabanan",
