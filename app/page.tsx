@@ -353,14 +353,20 @@ const TextAreaField = ({ label, name, value, onChange, placeholder, error, rows 
 );
 
 // ================= KOMPONEN RADIO GROUP =================
-const RadioGroup = ({ label, name, value, onChange, options, error }: {
-  label: string, name: string, value: string, onChange: (e: React.ChangeEvent<HTMLInputElement>) => void,
-  options: { value: string; label: string }[], error?: string
+const RadioGroup = ({ label, name, value, onChange, options, error, hint }: {
+  label: string;
+  name: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  options: { value: string; label: string }[];
+  error?: string;
+  hint?: string;
 }) => (
   <div>
-    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-3">
+    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
       {label}
     </label>
+    {hint && <p className="text-xs text-neutral-500 dark:text-neutral-600 mb-3 leading-relaxed">{hint}</p>}
     <div className="flex gap-3 flex-wrap">
       {options.map(opt => (
         <label
@@ -1057,10 +1063,11 @@ export default function FormASN() {
                     {formData.kabupaten === 'Di Dalam Kabupaten Tabanan' && (
                       <div className="space-y-6">
                         <RadioGroup
-                          label="301. Apakah Memiliki Usaha Penyewaan Lahan/Kontrakan/Kos-kosan; Usaha Keliling; Usaha Online; Usaha di Luar Tempat Tinggal yang peralatan usahanya dibongkar pasang; Usaha Borongan Konstruksi/Perusahaan Konstruksi yang berlokasi di tempat tinggal atau penggalian; Usaha lainnya seperti freelance atau usaha selain cakupan diatas yang berlokasi di tempat tinggal; atau Usaha Pertanian? *"
+                          label="301. Apakah memiliki usaha di tempat tinggal? *"
                           name="memilikiUsaha"
                           value={formData.memilikiUsaha}
                           onChange={handleInputChange}
+                          hint="Apakah Memiliki Usaha Penyewaan Lahan/Kontrakan/Kos-kosan; Usaha Keliling; Usaha Online; Usaha di Luar Tempat Tinggal yang peralatan usahanya dibongkar pasang; Usaha Borongan Konstruksi/Perusahaan Konstruksi yang berlokasi di tempat tinggal atau penggalian; Usaha lainnya seperti freelance atau usaha selain cakupan diatas yang berlokasi di tempat tinggal; atau Usaha Pertanian?"
                           options={[
                             { value: 'Ya', label: 'Ya' },
                             { value: 'Tidak', label: 'Tidak' }
