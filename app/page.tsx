@@ -36,46 +36,46 @@ const Modal = ({ config, onClose }: { config: ModalConfig; onClose: () => void }
       </svg>
     ),
     confirm: (
-      <svg className="w-12 h-12 text-neutral-700" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
+      <svg className="w-12 h-12 text-neutral-700 dark:text-neutral-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m9-.75a9 9 0 11-18 0 9 9 0 0118 0zm-9 3.75h.008v.008H12v-.008z" />
       </svg>
     ),
   };
 
   const bgColors: Record<ModalType, string> = {
-    success: 'bg-green-50 border-green-200',
-    error: 'bg-red-50 border-red-200',
-    confirm: 'bg-neutral-50 border-neutral-200',
+    success: 'bg-green-50 dark:bg-green-50 border-green-200',
+    error: 'bg-red-50 dark:bg-red-50 border-red-200',
+    confirm: 'bg-neutral-50 dark:bg-neutral-100 border-neutral-200 dark:border-neutral-300',
   };
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       {/* Overlay */}
       <div 
-        className="absolute inset-0 bg-black/50 backdrop-blur-sm animate-in fade-in duration-200"
+        className="absolute inset-0 bg-black/50 dark:bg-black/70 backdrop-blur-sm animate-in fade-in duration-200"
         onClick={config.showCancel ? undefined : onClose}
       />
       
       {/* Modal */}
       <div className={`
-        relative w-full max-w-md bg-white rounded-2xl shadow-2xl border ${bgColors[config.type]}
+        relative w-full max-w-md bg-white dark:bg-white rounded-2xl shadow-2xl border ${bgColors[config.type]}
         animate-in zoom-in-95 fade-in duration-200
       `}>
         <div className="p-6 text-center">
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white shadow-sm border border-neutral-100 mb-4">
+          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white dark:bg-white shadow-sm border border-neutral-100 dark:border-neutral-200 mb-4">
             {icons[config.type]}
           </div>
           
-          <h3 className="text-lg font-semibold text-neutral-900 mb-2">
+          <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-900 mb-2">
             {config.title}
           </h3>
           
-          <p className="text-sm text-neutral-600 leading-relaxed">
+          <p className="text-sm text-neutral-600 dark:text-neutral-700 leading-relaxed">
             {config.message}
           </p>
         </div>
 
-        <div className={`flex items-center justify-center gap-3 px-6 pb-6 ${config.showCancel ? '' : ''}`}>
+        <div className="flex items-center justify-center gap-3 px-6 pb-6">
           {config.showCancel && (
             <button
               type="button"
@@ -83,8 +83,8 @@ const Modal = ({ config, onClose }: { config: ModalConfig; onClose: () => void }
                 config.onCancel?.();
                 onClose();
               }}
-              className="flex-1 px-4 py-2.5 text-sm font-medium text-neutral-700 bg-neutral-100 
-                rounded-xl hover:bg-neutral-200 transition-all duration-200
+              className="flex-1 px-4 py-2.5 text-sm font-medium text-neutral-700 dark:text-neutral-800 bg-neutral-100 dark:bg-neutral-200 
+                rounded-xl hover:bg-neutral-200 dark:hover:bg-neutral-300 transition-all duration-200
                 focus:outline-none focus:ring-4 focus:ring-neutral-900/10"
             >
               Batal
@@ -118,8 +118,8 @@ const Modal = ({ config, onClose }: { config: ModalConfig; onClose: () => void }
           <button
             type="button"
             onClick={onClose}
-            className="absolute top-3 right-3 p-2 text-neutral-400 hover:text-neutral-600 
-              rounded-lg hover:bg-neutral-100 transition-all duration-200
+            className="absolute top-3 right-3 p-2 text-neutral-400 dark:text-neutral-500 hover:text-neutral-600 dark:hover:text-neutral-800 
+              rounded-lg hover:bg-neutral-100 dark:hover:bg-neutral-200 transition-all duration-200
               focus:outline-none focus:ring-2 focus:ring-neutral-900/10"
             aria-label="Tutup"
           >
@@ -177,20 +177,20 @@ const SearchableSelect = ({
           relative w-full flex items-center gap-3 px-4 py-3
           text-left text-sm rounded-xl border-2 transition-all duration-200
           ${error 
-            ? 'border-red-400 bg-red-50/50 focus:ring-red-400/20' 
-            : 'border-neutral-200 hover:border-neutral-300 focus:border-neutral-900 focus:ring-neutral-900/10'
+            ? 'border-red-400 bg-red-50/50 dark:bg-red-50/50 focus:ring-red-400/20' 
+            : 'border-neutral-200 dark:border-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-400 focus:border-neutral-900 dark:focus:border-neutral-900 focus:ring-neutral-900/10'
           }
-          ${disabled ? 'bg-neutral-100 text-neutral-400 cursor-not-allowed' : 'bg-white cursor-pointer'}
+          ${disabled ? 'bg-neutral-100 dark:bg-neutral-200 text-neutral-400 dark:text-neutral-500 cursor-not-allowed' : 'bg-white dark:bg-white cursor-pointer'}
           focus:outline-none focus:ring-4
         `}
         aria-haspopup="listbox"
         aria-expanded={isOpen}
       >
-        <span className={`flex-1 truncate ${!value ? 'text-neutral-400' : 'text-neutral-900'}`}>
+        <span className={`flex-1 truncate ${!value ? 'text-neutral-400 dark:text-neutral-500' : 'text-neutral-900 dark:text-neutral-900'}`}>
           {value || placeholder}
         </span>
         <svg 
-          className={`w-5 h-5 text-neutral-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
+          className={`w-5 h-5 text-neutral-400 dark:text-neutral-500 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
           fill="none" 
           stroke="currentColor" 
           viewBox="0 0 24 24"
@@ -204,11 +204,11 @@ const SearchableSelect = ({
       </button>
 
       {isOpen && !disabled && (
-        <div className="absolute z-50 w-full mt-2 bg-white rounded-xl border border-neutral-200 shadow-lg overflow-hidden animate-in slide-in-from-top-2 duration-200">
-          <div className="p-3 border-b border-neutral-100">
+        <div className="absolute z-50 w-full mt-2 bg-white dark:bg-white rounded-xl border border-neutral-200 dark:border-neutral-300 shadow-lg dark:shadow-xl overflow-hidden animate-in slide-in-from-top-2 duration-200">
+          <div className="p-3 border-b border-neutral-100 dark:border-neutral-200">
             <div className="relative">
               <svg 
-                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400" 
+                className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-400 dark:text-neutral-500" 
                 fill="none" 
                 stroke="currentColor" 
                 viewBox="0 0 24 24"
@@ -225,9 +225,9 @@ const SearchableSelect = ({
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 onClick={(e) => e.stopPropagation()}
-                className="w-full pl-10 pr-4 py-2.5 text-sm bg-neutral-50 border border-neutral-200 rounded-lg
+                className="w-full pl-10 pr-4 py-2.5 text-sm text-neutral-900 dark:text-neutral-900 bg-neutral-50 dark:bg-neutral-100 border border-neutral-200 dark:border-neutral-300 rounded-lg
                   focus:outline-none focus:ring-2 focus:ring-neutral-900/10 focus:border-neutral-400
-                  placeholder:text-neutral-400 transition-all"
+                  placeholder:text-neutral-400 dark:placeholder:text-neutral-500 transition-all"
                 placeholder="Ketik untuk mencari..."
               />
             </div>
@@ -247,17 +247,17 @@ const SearchableSelect = ({
                   }}
                   className={`
                     px-4 py-2.5 text-sm cursor-pointer transition-colors duration-100
-                    hover:bg-neutral-100 active:bg-neutral-200
-                    ${idx === selectedIndex ? 'bg-neutral-100 font-medium' : 'text-neutral-700'}
+                    hover:bg-neutral-100 dark:hover:bg-neutral-100 active:bg-neutral-200 dark:active:bg-neutral-200
+                    ${idx === selectedIndex ? 'bg-neutral-100 dark:bg-neutral-100 font-medium text-neutral-900 dark:text-neutral-900' : 'text-neutral-700 dark:text-neutral-800'}
                   `}
                 >
                   {opt}
                 </div>
               ))
             ) : (
-              <div className="px-4 py-8 text-sm text-neutral-500 text-center">
+              <div className="px-4 py-8 text-sm text-neutral-500 dark:text-neutral-600 text-center">
                 <svg 
-                  className="w-8 h-8 mx-auto mb-2 text-neutral-300" 
+                  className="w-8 h-8 mx-auto mb-2 text-neutral-300 dark:text-neutral-400" 
                   fill="none" 
                   stroke="currentColor" 
                   viewBox="0 0 24 24"
@@ -284,10 +284,10 @@ const InputField = ({
   placeholder?: string, error?: string, type?: string, maxLength?: number, hint?: string
 }) => (
   <div>
-    <label htmlFor={name} className="block text-sm font-medium text-neutral-900 mb-1.5">
+    <label htmlFor={name} className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
       {label}
     </label>
-    {hint && <p className="text-xs text-neutral-500 mb-2">{hint}</p>}
+    {hint && <p className="text-xs text-neutral-500 dark:text-neutral-600 mb-2">{hint}</p>}
     <input
       id={name}
       type={type}
@@ -298,15 +298,16 @@ const InputField = ({
       placeholder={placeholder}
       className={`
         w-full px-4 py-3 text-sm rounded-xl border-2 transition-all duration-200
-        placeholder:text-neutral-400
+        text-neutral-900 dark:text-neutral-900 placeholder:text-neutral-400 dark:placeholder:text-neutral-500
+        bg-white dark:bg-white
         ${error 
-          ? 'border-red-400 bg-red-50/50 focus:ring-red-400/20' 
-          : 'border-neutral-200 hover:border-neutral-300 focus:border-neutral-900 focus:ring-neutral-900/10'
+          ? 'border-red-400 bg-red-50/50 dark:bg-red-50/50 focus:ring-red-400/20' 
+          : 'border-neutral-200 dark:border-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-400 focus:border-neutral-900 dark:focus:border-neutral-900 focus:ring-neutral-900/10'
         }
         focus:outline-none focus:ring-4
       `}
     />
-    {error && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+    {error && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700 flex items-center gap-1">
       <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -321,7 +322,7 @@ const TextAreaField = ({ label, name, value, onChange, placeholder, error, rows 
   placeholder?: string, error?: string, rows?: number
 }) => (
   <div>
-    <label htmlFor={name} className="block text-sm font-medium text-neutral-900 mb-1.5">
+    <label htmlFor={name} className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
       {label}
     </label>
     <textarea
@@ -333,15 +334,16 @@ const TextAreaField = ({ label, name, value, onChange, placeholder, error, rows 
       placeholder={placeholder}
       className={`
         w-full px-4 py-3 text-sm rounded-xl border-2 transition-all duration-200 resize-none
-        placeholder:text-neutral-400
+        text-neutral-900 dark:text-neutral-900 placeholder:text-neutral-400 dark:placeholder:text-neutral-500
+        bg-white dark:bg-white
         ${error 
-          ? 'border-red-400 bg-red-50/50 focus:ring-red-400/20' 
-          : 'border-neutral-200 hover:border-neutral-300 focus:border-neutral-900 focus:ring-neutral-900/10'
+          ? 'border-red-400 bg-red-50/50 dark:bg-red-50/50 focus:ring-red-400/20' 
+          : 'border-neutral-200 dark:border-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-400 focus:border-neutral-900 dark:focus:border-neutral-900 focus:ring-neutral-900/10'
         }
         focus:outline-none focus:ring-4
       `}
     />
-    {error && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+    {error && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700 flex items-center gap-1">
       <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -356,7 +358,7 @@ const RadioGroup = ({ label, name, value, onChange, options, error }: {
   options: { value: string; label: string }[], error?: string
 }) => (
   <div>
-    <label className="block text-sm font-medium text-neutral-900 mb-3">
+    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-3">
       {label}
     </label>
     <div className="flex gap-3 flex-wrap">
@@ -367,8 +369,8 @@ const RadioGroup = ({ label, name, value, onChange, options, error }: {
             relative flex items-center gap-2.5 px-4 py-3 rounded-xl border-2 cursor-pointer
             transition-all duration-200 select-none
             ${value === opt.value 
-              ? 'border-neutral-900 bg-neutral-900 text-white' 
-              : 'border-neutral-200 hover:border-neutral-300 bg-white text-neutral-700'
+              ? 'border-neutral-900 dark:border-neutral-900 bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white' 
+              : 'border-neutral-200 dark:border-neutral-300 hover:border-neutral-300 dark:hover:border-neutral-400 bg-white dark:bg-white text-neutral-700 dark:text-neutral-800'
             }
           `}
         >
@@ -382,17 +384,17 @@ const RadioGroup = ({ label, name, value, onChange, options, error }: {
           />
           <span className={`
             w-4 h-4 rounded-full border-2 flex items-center justify-center transition-all
-            ${value === opt.value ? 'border-white' : 'border-neutral-300'}
+            ${value === opt.value ? 'border-white dark:border-white' : 'border-neutral-300 dark:border-neutral-400'}
           `}>
             {value === opt.value && (
-              <span className="w-2 h-2 rounded-full bg-white animate-in zoom-in duration-150" />
+              <span className="w-2 h-2 rounded-full bg-white dark:bg-white animate-in zoom-in duration-150" />
             )}
           </span>
           <span className="text-sm font-medium">{opt.label}</span>
         </label>
       ))}
     </div>
-    {error && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+    {error && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700 flex items-center gap-1">
       <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -407,16 +409,16 @@ const FileUpload = ({ label, name, onChange, value, error, hint, icon }: {
   value: string, error?: string, hint?: string, icon: React.ReactNode
 }) => (
   <div className="flex flex-col">
-    <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+    <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
       {label}
     </label>
-    {hint && <p className="text-xs text-neutral-500 mb-3">{hint}</p>}
+    {hint && <p className="text-xs text-neutral-500 dark:text-neutral-600 mb-3">{hint}</p>}
     
     {value ? (
-      <div className="relative group rounded-xl overflow-hidden border-2 border-neutral-200">
+      <div className="relative group rounded-xl overflow-hidden border-2 border-neutral-200 dark:border-neutral-300">
         <img src={value} alt="Preview" className="w-full h-40 object-cover" />
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-200 flex items-center justify-center">
-          <label className="opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer px-4 py-2 bg-white/90 text-neutral-900 text-sm font-medium rounded-lg hover:bg-white">
+          <label className="opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer px-4 py-2 bg-white/90 dark:bg-white/90 text-neutral-900 dark:text-neutral-900 text-sm font-medium rounded-lg hover:bg-white dark:hover:bg-white">
             Ganti Foto
             <input type="file" accept="image/*" onChange={onChange} className="hidden" />
           </label>
@@ -425,23 +427,23 @@ const FileUpload = ({ label, name, onChange, value, error, hint, icon }: {
     ) : (
       <label className={`
         flex flex-col items-center justify-center gap-3 p-8 rounded-xl border-2 border-dashed
-        cursor-pointer transition-all duration-200
+        cursor-pointer transition-all duration-200 bg-white dark:bg-white
         ${error 
-          ? 'border-red-400 bg-red-50/50' 
-          : 'border-neutral-300 hover:border-neutral-400 hover:bg-neutral-50'
+          ? 'border-red-400 bg-red-50/50 dark:bg-red-50/50' 
+          : 'border-neutral-300 dark:border-neutral-400 hover:border-neutral-400 dark:hover:border-neutral-500 hover:bg-neutral-50 dark:hover:bg-neutral-100'
         }
       `}>
-        <div className="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-400">
+        <div className="w-12 h-12 rounded-full bg-neutral-100 dark:bg-neutral-200 flex items-center justify-center text-neutral-400 dark:text-neutral-500">
           {icon}
         </div>
         <div className="text-center">
-          <p className="text-sm font-medium text-neutral-700">Klik untuk upload</p>
-          <p className="text-xs text-neutral-400 mt-1">JPG, PNG, atau WebP</p>
+          <p className="text-sm font-medium text-neutral-700 dark:text-neutral-800">Klik untuk upload</p>
+          <p className="text-xs text-neutral-400 dark:text-neutral-500 mt-1">JPG, PNG, atau WebP</p>
         </div>
         <input type="file" accept="image/*" onChange={onChange} className="hidden" />
       </label>
     )}
-    {error && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+    {error && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700 flex items-center gap-1">
       <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
         <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
@@ -470,7 +472,6 @@ export default function FormASN() {
     memilikiUsaha: '', noMeteranPLN: '', fotoRumah: '', fotoRuangTamu: '', sudahDidataSE: ''
   });
 
-  // Helper untuk show modal
   const showModal = (config: ModalConfig) => {
     setModalConfig(config);
   };
@@ -642,7 +643,6 @@ export default function FormASN() {
       return;
     }
 
-    // Show confirmation modal
     showModal({
       type: 'confirm',
       title: 'Konfirmasi Pengiriman',
@@ -706,12 +706,12 @@ export default function FormASN() {
   };
 
   if (!isMounted) return (
-    <div className="min-h-screen flex items-center justify-center bg-neutral-50">
+    <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-100">
       <div className="flex flex-col items-center gap-4">
-        <svg className="w-8 h-8 animate-spin text-neutral-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+        <svg className="w-8 h-8 animate-spin text-neutral-400 dark:text-neutral-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
           <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
         </svg>
-        <p className="text-sm text-neutral-500">Memuat formulir...</p>
+        <p className="text-sm text-neutral-500 dark:text-neutral-600">Memuat formulir...</p>
       </div>
     </div>
   );
@@ -726,14 +726,14 @@ export default function FormASN() {
         />
       )}
 
-      <div className="min-h-screen bg-neutral-50 py-8 px-4 sm:py-12">
+      <div className="min-h-screen bg-neutral-50 dark:bg-neutral-100 py-8 px-4 sm:py-12">
         <div className="max-w-2xl mx-auto">
           
           {/* MAIN CARD */}
-          <div className="bg-white rounded-2xl shadow-sm border border-neutral-200 overflow-hidden">
+          <div className="bg-white dark:bg-white rounded-2xl shadow-sm dark:shadow-md border border-neutral-200 dark:border-neutral-300 overflow-hidden">
             
             {/* BANNER */}
-            <div className="w-full aspect-[3/1] bg-neutral-100 relative overflow-hidden">
+            <div className="w-full aspect-[3/1] bg-neutral-100 dark:bg-neutral-200 relative overflow-hidden">
               <img 
                 src="/banner-se2026.png" 
                 alt="Banner Sensus Ekonomi 2026 Tabanan" 
@@ -747,10 +747,10 @@ export default function FormASN() {
             <div className="p-6 sm:p-8">
               {/* HEADER DI DALAM CARD */}
               <div className="text-center mb-8">
-                <h1 className="text-xl sm:text-2xl font-bold text-neutral-900 tracking-tight">
+                <h1 className="text-xl sm:text-2xl font-bold text-neutral-900 dark:text-neutral-900 tracking-tight">
                   Sensus Ekonomi 2026
                 </h1>
-                <p className="mt-1.5 text-sm text-neutral-500">
+                <p className="mt-1.5 text-sm text-neutral-500 dark:text-neutral-600">
                   Form Registrasi Sensus Ekonomi 2026 ASN Pemerintah Kabupaten Tabanan
                 </p>
               </div>
@@ -762,8 +762,8 @@ export default function FormASN() {
                     <div className={`
                       flex items-center justify-center w-8 h-8 rounded-full text-xs font-bold transition-all duration-300
                       ${currentBlock >= step 
-                        ? 'bg-neutral-900 text-white' 
-                        : 'bg-neutral-100 text-neutral-400'
+                        ? 'bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white' 
+                        : 'bg-neutral-100 dark:bg-neutral-200 text-neutral-400 dark:text-neutral-500'
                       }
                     `}>
                       {currentBlock > step ? (
@@ -774,12 +774,12 @@ export default function FormASN() {
                     </div>
                     <span className={`
                       ml-2 text-sm font-medium hidden sm:inline transition-colors duration-300
-                      ${currentBlock >= step ? 'text-neutral-900' : 'text-neutral-400'}
+                      ${currentBlock >= step ? 'text-neutral-900 dark:text-neutral-900' : 'text-neutral-400 dark:text-neutral-500'}
                     `}>
                       {step === 1 ? 'Identitas' : step === 2 ? 'Tempat' : 'Tambahan'}
                     </span>
                     {idx < 2 && (
-                      <div className={`flex-1 h-0.5 mx-3 transition-all duration-300 ${currentBlock > step ? 'bg-neutral-900' : 'bg-neutral-200'}`} />
+                      <div className={`flex-1 h-0.5 mx-3 transition-all duration-300 ${currentBlock > step ? 'bg-neutral-900 dark:bg-neutral-900' : 'bg-neutral-200 dark:bg-neutral-300'}`} />
                     )}
                   </div>
                 ))}
@@ -790,9 +790,9 @@ export default function FormASN() {
                 {/* ================= BLOK I ================= */}
                 {currentBlock === 1 && (
                   <div className="space-y-6">
-                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200">
-                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 text-white text-xs font-bold">1</span>
-                      <h3 className="text-lg font-semibold text-neutral-900">Identitas Umum</h3>
+                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200 dark:border-neutral-300">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white text-xs font-bold">1</span>
+                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-900">Identitas Umum</h3>
                     </div>
 
                     <InputField
@@ -843,7 +843,7 @@ export default function FormASN() {
                     />
 
                     <div>
-                      <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+                      <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                         106. Asal Instansi/OPD *
                       </label>
                       <SearchableSelect
@@ -856,7 +856,7 @@ export default function FormASN() {
                         placeholder="Pilih atau cari OPD..."
                         error={errors.asalOPD}
                       />
-                      {errors.asalOPD && <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+                      {errors.asalOPD && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700 flex items-center gap-1">
                         <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -899,9 +899,9 @@ export default function FormASN() {
                 {/* ================= BLOK II ================= */}
                 {currentBlock === 2 && (
                   <div className="space-y-6">
-                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200">
-                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 text-white text-xs font-bold">2</span>
-                      <h3 className="text-lg font-semibold text-neutral-900">Keterangan Tempat</h3>
+                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200 dark:border-neutral-300">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white text-xs font-bold">2</span>
+                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-900">Keterangan Tempat</h3>
                     </div>
 
                     <TextAreaField
@@ -914,7 +914,7 @@ export default function FormASN() {
                     />
 
                     <div>
-                      <label htmlFor="kabupaten" className="block text-sm font-medium text-neutral-900 mb-1.5">
+                      <label htmlFor="kabupaten" className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                         202. Kabupaten Tempat Tinggal Saat Ini *
                       </label>
                       <div className="relative">
@@ -923,25 +923,25 @@ export default function FormASN() {
                           name="kabupaten"
                           value={formData.kabupaten}
                           onChange={handleInputChange}
-                          className="w-full px-4 py-3 text-sm rounded-xl border-2 border-neutral-200 bg-white
+                          className="w-full px-4 py-3 text-sm rounded-xl border-2 border-neutral-200 dark:border-neutral-300 bg-white dark:bg-white text-neutral-900 dark:text-neutral-900
                             appearance-none cursor-pointer
-                            hover:border-neutral-300 focus:border-neutral-900 focus:ring-4 focus:ring-neutral-900/10
+                            hover:border-neutral-300 dark:hover:border-neutral-400 focus:border-neutral-900 dark:focus:border-neutral-900 focus:ring-4 focus:ring-neutral-900/10
                             focus:outline-none transition-all duration-200"
                         >
                           <option value="Di Dalam Kabupaten Tabanan">Di Dalam Kabupaten Tabanan</option>
                           <option value="Di Luar Kabupaten Tabanan">Di Luar Kabupaten Tabanan</option>
                         </select>
-                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
+                        <svg className="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-neutral-400 dark:text-neutral-500 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
                           <path strokeLinecap="round" strokeLinejoin="round" d="M6 9l6 6 6-6" />
                         </svg>
                       </div>
                     </div>
 
                     {formData.kabupaten === 'Di Dalam Kabupaten Tabanan' && (
-                      <div className="p-5 bg-neutral-50 border border-neutral-200 rounded-xl space-y-5">
+                      <div className="p-5 bg-neutral-50 dark:bg-neutral-100 border border-neutral-200 dark:border-neutral-300 rounded-xl space-y-5">
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                           <div>
-                            <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+                            <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                               203. Kecamatan *
                             </label>
                             <SearchableSelect
@@ -957,11 +957,11 @@ export default function FormASN() {
                               placeholder="Pilih atau cari..."
                               error={errors.kecamatan}
                             />
-                            {errors.kecamatan && <p className="mt-1.5 text-xs text-red-600">{errors.kecamatan}</p>}
+                            {errors.kecamatan && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700">{errors.kecamatan}</p>}
                           </div>
 
                           <div>
-                            <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+                            <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                               204. Desa *
                             </label>
                             <SearchableSelect
@@ -980,12 +980,12 @@ export default function FormASN() {
                               placeholder="Pilih atau cari..."
                               error={errors.desa}
                             />
-                            {errors.desa && <p className="mt-1.5 text-xs text-red-600">{errors.desa}</p>}
+                            {errors.desa && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700">{errors.desa}</p>}
                           </div>
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+                          <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                             205. SLS / Banjar *
                           </label>
                           <SearchableSelect
@@ -999,18 +999,18 @@ export default function FormASN() {
                             placeholder="Pilih atau cari..."
                             error={errors.slsBanjar}
                           />
-                          {errors.slsBanjar && <p className="mt-1.5 text-xs text-red-600">{errors.slsBanjar}</p>}
+                          {errors.slsBanjar && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700">{errors.slsBanjar}</p>}
                         </div>
 
                         <div className="pt-2">
-                          <label className="block text-sm font-medium text-neutral-900 mb-1.5">
+                          <label className="block text-sm font-medium text-neutral-900 dark:text-neutral-900 mb-1.5">
                             206. Geotagging Lokasi Tempat Tinggal *
                           </label>
-                          <p className="text-xs text-neutral-500 mb-4">
-                            Tandai lokasi rumah Anda pada peta untuk memudahkan petugas lapangan.
+                          <p className="text-xs text-neutral-500 dark:text-neutral-600 mb-4">
+                            Geotag diperlukan untuk koordinat pemetaan pada sistem aplikasi dan memudahkan petugas lapangan dalam menemukan lokasi rumah untuk penempelan stiker Sensus Ekonomi.
                           </p>
                           
-                          <div className="rounded-xl overflow-hidden border-2 border-neutral-200">
+                          <div className="rounded-xl overflow-hidden border-2 border-neutral-200 dark:border-neutral-300">
                             <MapPicker 
                               savedLat={formData.latitude}
                               savedLng={formData.longitude}
@@ -1020,10 +1020,10 @@ export default function FormASN() {
                               }} 
                             />
                           </div>
-                          {errors.latitude && <p className="mt-1.5 text-xs text-red-600">{errors.latitude}</p>}
+                          {errors.latitude && <p className="mt-1.5 text-xs text-red-600 dark:text-red-700">{errors.latitude}</p>}
                           
                           {formData.latitude && (
-                            <div className="mt-3 flex items-center gap-4 px-4 py-3 bg-neutral-900 text-white rounded-xl text-xs font-mono">
+                            <div className="mt-3 flex items-center gap-4 px-4 py-3 bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white rounded-xl text-xs font-mono">
                               <div className="flex items-center gap-2">
                                 <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
                                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -1049,9 +1049,9 @@ export default function FormASN() {
                 {/* ================= BLOK III ================= */}
                 {currentBlock === 3 && (
                   <div className="space-y-6">
-                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200">
-                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 text-white text-xs font-bold">3</span>
-                      <h3 className="text-lg font-semibold text-neutral-900">Keterangan Tambahan</h3>
+                    <div className="flex items-center gap-3 pb-4 border-b border-neutral-200 dark:border-neutral-300">
+                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-neutral-900 dark:bg-neutral-900 text-white dark:text-white text-xs font-bold">3</span>
+                      <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-900">Keterangan Tambahan</h3>
                     </div>
 
                     {formData.kabupaten === 'Di Dalam Kabupaten Tabanan' && (
@@ -1083,7 +1083,7 @@ export default function FormASN() {
                             name="fotoRumah"
                             value={formData.fotoRumah}
                             onChange={(e) => handleFileChange(e, 'fotoRumah')}
-                            hint="Foto tampak depan untuk verifikasi lapangan"
+                            hint="Foto tampak depan digunakan sebagai acuan visual (ground check) bagi petugas lapangan agar tidak salah sasaran bangunan saat verifikasi."
                             error={errors.fotoRumah}
                             icon={
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
@@ -1097,7 +1097,7 @@ export default function FormASN() {
                             name="fotoRuangTamu"
                             value={formData.fotoRuangTamu}
                             onChange={(e) => handleFileChange(e, 'fotoRuangTamu')}
-                            hint="Foto ruang tamu untuk data kesejahteraan"
+                            hint="Foto bagian dalam/ruang tamu diperlukan sebagai kelengkapan data pendukung untuk memotret kondisi kesejahteraan sosial ekonomi rumah tangga."
                             error={errors.fotoRuangTamu}
                             icon={
                               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5" aria-hidden="true">
@@ -1109,7 +1109,7 @@ export default function FormASN() {
                       </div>
                     )}
 
-                    <div className="pt-4 border-t border-neutral-200">
+                    <div className="pt-4 border-t border-neutral-200 dark:border-neutral-300">
                       <RadioGroup
                         label="305. Apakah sudah dilakukan pendataan Sensus Ekonomi 2026 di rumah Anda? *"
                         name="sudahDidataSE"
@@ -1126,13 +1126,13 @@ export default function FormASN() {
                 )}
 
                 {/* NAVIGATION BUTTONS */}
-                <div className="flex items-center justify-between mt-10 pt-6 border-t border-neutral-200">
+                <div className="flex items-center justify-between mt-10 pt-6 border-t border-neutral-200 dark:border-neutral-300">
                   {currentBlock > 1 ? (
                     <button
                       type="button"
                       onClick={handlePrev}
-                      className="group inline-flex items-center gap-2 px-5 py-3 text-sm font-medium text-neutral-700 
-                        bg-neutral-100 rounded-xl hover:bg-neutral-200 transition-all duration-200
+                      className="group inline-flex items-center gap-2 px-5 py-3 text-sm font-medium text-neutral-700 dark:text-neutral-800 
+                        bg-neutral-100 dark:bg-neutral-200 rounded-xl hover:bg-neutral-200 dark:hover:bg-neutral-300 transition-all duration-200
                         focus:outline-none focus:ring-4 focus:ring-neutral-900/10"
                     >
                       <svg className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" aria-hidden="true">
@@ -1148,8 +1148,8 @@ export default function FormASN() {
                     <button
                       type="button"
                       onClick={handleNext}
-                      className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white
-                        bg-neutral-900 rounded-xl hover:bg-neutral-800 active:scale-[0.98]
+                      className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white dark:text-white
+                        bg-neutral-900 dark:bg-neutral-900 rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-800 active:scale-[0.98]
                         transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-neutral-900/20"
                     >
                       Selanjutnya
@@ -1162,9 +1162,9 @@ export default function FormASN() {
                       type="button"
                       onClick={handleSubmit}
                       disabled={isSubmitting}
-                      className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white
-                        bg-neutral-900 rounded-xl hover:bg-neutral-800 active:scale-[0.98]
-                        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-neutral-900 disabled:active:scale-100
+                      className="group inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white dark:text-white
+                        bg-neutral-900 dark:bg-neutral-900 rounded-xl hover:bg-neutral-800 dark:hover:bg-neutral-800 active:scale-[0.98]
+                        disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-neutral-900 dark:disabled:hover:bg-neutral-900 disabled:active:scale-100
                         transition-all duration-200 focus:outline-none focus:ring-4 focus:ring-neutral-900/20"
                     >
                       {isSubmitting ? (
@@ -1191,7 +1191,7 @@ export default function FormASN() {
           </div>
 
           {/* FOOTER */}
-          <p className="text-center text-xs text-neutral-400 mt-8">
+          <p className="text-center text-xs text-neutral-400 dark:text-neutral-500 mt-8">
             Data Anda aman dan hanya digunakan untuk keperluan Sensus Ekonomi 2026
           </p>
         </div>
