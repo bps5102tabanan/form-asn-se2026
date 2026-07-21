@@ -1057,7 +1057,7 @@ export default function FormASN() {
                     {formData.kabupaten === 'Di Dalam Kabupaten Tabanan' && (
                       <div className="space-y-6">
                         <RadioGroup
-                          label="301. Apakah memiliki usaha di tempat tinggal? *"
+                          label="301. Apakah Memiliki Usaha Penyewaan Lahan/Kontrakan/Kos-kosan; Usaha Keliling; Usaha Online; Usaha di Luar Tempat Tinggal yang peralatan usahanya dibongkar pasang; Usaha Borongan Konstruksi/Perusahaan Konstruksi yang berlokasi di tempat tinggal atau penggalian; Usaha lainnya seperti freelance atau usaha selain cakupan diatas yang berlokasi di tempat tinggal; atau Usaha Pertanian? *"
                           name="memilikiUsaha"
                           value={formData.memilikiUsaha}
                           onChange={handleInputChange}
