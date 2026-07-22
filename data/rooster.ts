@@ -27,7 +27,7 @@ export const DAFTAR_OPD = [
   "Dinas Kependudukan dan Pencatatan Sipil Kabupaten Tabanan",
   "Dinas Pengendalian Penduduk dan Keluarga Berencana Kabupaten Tabanan",
   "Dinas Pemberdayaan Perempuan dan Perlindungan Anak Kabupaten Tabanan",
-  "Badan Perencanaan Pembangunan, Penelitian, dan Pengembangan Kabupaten Tabanan",
+  "Badan Perencanaan Pembangunan Daerah (Bappeda) Kabupaten Tabanan",
   "Badan Kepegawaian dan Pengembangan Sumber Daya Manusia Kabupaten Tabanan",
   "Badan Pengelolaan Keuangan dan Aset Daerah / Bakeuda Kabupaten Tabanan",
   "Badan Pendapatan Daerah Kabupaten Tabanan",
