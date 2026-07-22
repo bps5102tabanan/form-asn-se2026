@@ -844,7 +844,7 @@ export default function FormASN() {
                       name="namaAnggotaKeluargaLain"
                       value={formData.namaAnggotaKeluargaLain}
                       onChange={handleInputChange}
-                      hint="Isi dengan '-' jika tidak ada"
+                      hint="Isikan 1 (satu) nama anggota keluarga lain dalam 1 KK, misal: pasangan, anak. (Isi '-' jika tidak ada)"
                       error={errors.namaAnggotaKeluargaLain}
                     />
 
